@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgsgoo3mjbr2c"]
+
+[ext_resource type="Script" path="res://scenes/UI/host_join_menu.gd" id="1_my1b8"]
+[ext_resource type="Script" path="res://scenes/UI/ParallaxBackground.gd" id="2_onr1j"]
+[ext_resource type="Texture2D" uid="uid://b00qjrdvaptpg" path="res://assets/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/1.png" id="3_g7du8"]
+[ext_resource type="Texture2D" uid="uid://do57tur1p17gt" path="res://assets/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/2.png" id="4_3c3is"]
+[ext_resource type="Texture2D" uid="uid://dr7p6g6lwsw0n" path="res://assets/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/3.png" id="5_typpf"]
+[ext_resource type="Texture2D" uid="uid://cijq2qovd28sf" path="res://assets/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/4.png" id="6_nnt74"]
+
+[sub_resource type="SystemFont" id="SystemFont_86863"]
+font_names = PackedStringArray("Eras ITC")
+font_weight = 999
+
+[node name="host_join_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_my1b8")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_onr1j")
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(-1.52588e-05, 3.8147e-06)
+scale = Vector2(2.43056, 2.79012)
+texture = ExtResource("3_g7du8")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Clouds"]
+scale = Vector2(2.43056, 2.07099)
+texture = ExtResource("4_3c3is")
+centered = false
+
+[node name="Foreground1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Foreground1"]
+position = Vector2(0, 216)
+scale = Vector2(2.43056, 2.12346)
+texture = ExtResource("5_typpf")
+centered = false
+
+[node name="Foreground2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Foreground2"]
+scale = Vector2(2.44444, 2.79012)
+texture = ExtResource("6_nnt74")
+centered = false
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.805556
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0941176, 0.690196, 0.266667, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = SubResource("SystemFont_86863")
+theme_override_font_sizes/font_size = 64
+text = "FRENZIED FIGHTERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = 304.0
+offset_right = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Host" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
